@@ -6,4 +6,12 @@ Using the code provided in https://www.youtube.com/watch?v=aL4-7w6Lhck, I will b
 # How to hack away at this project
 
         pip install -r requirements.txt
+        
+        # Do some hacking
+        # Do some testing
+        # Zip your code
+        make zip
+
+        # Upload your code to AWS
+        # Test your code is working on the web
 
