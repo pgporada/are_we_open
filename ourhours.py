@@ -1,12 +1,11 @@
-#!/usr/bin/env python
 import holidays
 from datetime import datetime, timedelta, time
 from pytz import timezone
 
-BIZ_OPEN    = time(9,0,0)
-BIZ_CLOSE   = time(18,0,0)
-WEEKEND     = (5, 6)
-TIMEZONE    = 'US/Eastern'
+BIZ_OPEN = time(9, 0, 0)
+BIZ_CLOSE = time(18, 0, 0)
+WEEKEND = (5, 6)
+TIMEZONE = 'US/Eastern'
 
 def is_gl_open():
     now_time = datetime.now(timezone(TIMEZONE))
@@ -32,5 +31,14 @@ def is_gl_open():
     else:
         return True
 
+
+# Lambda will only export one specific function, called a handler
+def lambda_handler(event, context):
+    return {'are_we_open': is_gl_open()}
+
+
 if __name__ == '__main__':
     print is_gl_open()
+
+    # We still want to test that our handler is working without running it through AWS
+    print lambda_handler("fake event", "fake context")

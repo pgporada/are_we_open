@@ -1,5 +1,2 @@
-holiday
-datetime
+holidays
 pytz
-tox
-pytest
