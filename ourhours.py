@@ -10,13 +10,21 @@ TIMEZONE = 'US/Eastern'
 def is_gl_open():
     now_time = datetime.now(timezone(TIMEZONE))
     h = sorted(holidays.US(years=now_time.year).items())
-    observed_holidays = [date for date, name in h \
-                        if 'Martin Luther' not in name and 'Columbus' not in name ]
 
+    # Days off come from the employee handbook
+    observed_holidays = [date for date, name in h \
+                        if 'New Year\'s Day' not in name and \
+                        'Memorial Day' not in name and \
+                        'Independence Day' not in name and \
+                        'Labor Day' not in name and \
+                        'Christmas Day' not in name
+                        ]
+
+    # Thanksgiving and the day before
     thanksgiving = [date for date, name in h if name == 'Thanksgiving'][0]
     observed_holidays.append(thanksgiving + timedelta(days=1))
 
-    # Today is a holiday
+    # Check if the current date is a holiday
     for h in observed_holidays:
         if h == datetime.date(now_time):
             return False
